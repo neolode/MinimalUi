@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalUI", "MinimalUI\MinimalUI.csproj", "{02F89AE9-1C63-44B3-9B1F-2334A85E8520}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{63F833D4-2800-45CD-85F9-E22F45A5B436}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02F89AE9-1C63-44B3-9B1F-2334A85E8520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F89AE9-1C63-44B3-9B1F-2334A85E8520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F89AE9-1C63-44B3-9B1F-2334A85E8520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F89AE9-1C63-44B3-9B1F-2334A85E8520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F833D4-2800-45CD-85F9-E22F45A5B436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F833D4-2800-45CD-85F9-E22F45A5B436}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F833D4-2800-45CD-85F9-E22F45A5B436}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F833D4-2800-45CD-85F9-E22F45A5B436}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
