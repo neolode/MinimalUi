@@ -86,7 +86,6 @@
             this.ForeColor = System.Drawing.Color.Gainsboro;
             this.Name = "Form1";
             this.Text = "Not Console";
-            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 

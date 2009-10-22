@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MinimalUI
@@ -35,7 +32,7 @@ namespace MinimalUI
                 if (scale < text.Length)
                     scale = text.Length;
                 Application.DoEvents();
-                this.Refresh();
+                Refresh();
             }
         }
 
@@ -48,16 +45,13 @@ namespace MinimalUI
             }
             set
             {
-                if (value < minscale)
-                    scale = minscale;
-                else
-                    scale = value;
+                scale = value < minscale ? minscale : value;
                 Application.DoEvents();
-                this.Refresh();
+                Refresh();
             }
         }
 
-        Font _defaultFont = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        Font _defaultFont = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         [Category(" Button")]
         public override Font Font
         {
@@ -71,7 +65,7 @@ namespace MinimalUI
                     base.Font = _defaultFont;
                 else
                 {
-                    if (value == System.Windows.Forms.Control.DefaultFont)
+                    if (value == DefaultFont)
                         base.Font = _defaultFont;
                     else
                         base.Font = value;
@@ -122,8 +116,8 @@ namespace MinimalUI
         public MonospaceButton()
         {
             InitializeComponent();
-            text = this.Name;
-            this.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            text = Name;
+            Font = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -151,7 +145,7 @@ namespace MinimalUI
 
             if (enter) display = display.ToUpper();
 
-            SolidBrush br = new SolidBrush(this.ForeColor);
+            var br = new SolidBrush(ForeColor);
 
             if (down)
             {
@@ -181,8 +175,8 @@ namespace MinimalUI
                 br.Color = Color.FromArgb(r, g, b);
             }
             Point pt = new Point(0, 0);
-            this.Size = gs.MeasureString(display, this.Font).ToSize();
-            gs.DrawString(display, this.Font, br, pt);
+            Size = gs.MeasureString(display, Font).ToSize();
+            gs.DrawString(display, Font, br, pt);
             base.OnPaint(pe);
         }
 
