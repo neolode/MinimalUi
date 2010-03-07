@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MinimalUI
@@ -31,7 +28,7 @@ namespace MinimalUI
             {
                 max_val = value;
                 Application.DoEvents();
-                this.Refresh();
+                Refresh();
             }
         }
 
@@ -95,11 +92,11 @@ namespace MinimalUI
             {
                 empty_char = value;
                 Application.DoEvents();
-                this.Refresh();
+                Refresh();
             }
         }
 
-        Font _defaultFont = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        readonly Font _defaultFont = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         [Category(" ProgressBar")]
         public override Font Font
         {
@@ -190,19 +187,19 @@ namespace MinimalUI
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            Graphics gs = pe.Graphics;
+            var gs = pe.Graphics;
 
-            int tmp1 = (int)Math.Ceiling(((float)current_val / (float)max_val) * 100);
-            string tmp2 = string.Empty;
+            var tmp1 = (int)Math.Ceiling((current_val / (float)max_val) * 100);
+            var tmp2 = string.Empty;
             if (tmp1 < 10)
                 tmp2 = "00";
             else
                 if (tmp1 < 100)
                     tmp2 = "0";
 
-            normal_val = (int)Math.Ceiling(((float)tmp1 / 100) * (float)scale);
+            normal_val = (int)Math.Ceiling(((float)tmp1 / 100) * scale);
 
-            String display = "[";
+            var display = "[";
 
             for (int i = 0; i < scale; i++)
             {
@@ -214,10 +211,10 @@ namespace MinimalUI
 
             display += "]" + tmp2 + tmp1 + "%";
 
-            SolidBrush br = new SolidBrush(this.ForeColor);
-            Point pt = new Point(0, 0);
-            this.Size = gs.MeasureString(display, this.Font).ToSize();
-            gs.DrawString(display, this.Font, br, pt);
+            var br = new SolidBrush(ForeColor);
+            var pt = new Point(0, 0);
+            Size = gs.MeasureString(display, Font).ToSize();
+            gs.DrawString(display, Font, br, pt);
             base.OnPaint(pe);
         }
 

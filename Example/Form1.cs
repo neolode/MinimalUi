@@ -14,12 +14,12 @@ namespace WindowsFormsApplication1
             //vScrollBar1.Value = this.Height;
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown1ValueChanged(object sender, EventArgs e)
         {
             monospaceProgressBar1.Value = (int)numericUpDown1.Value;
         }
 
-        private void monospaceButton1_Click(object sender, EventArgs e)
+        private void MonospaceButton1Click(object sender, EventArgs e)
         {
             Close();
         }

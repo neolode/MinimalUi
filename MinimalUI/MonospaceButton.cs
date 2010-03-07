@@ -7,15 +7,15 @@ namespace MinimalUI
 {
     public partial class MonospaceButton : Control
     {
-        string text;
-        int scale = 10;
-        int minscale = 10;
-        string padl = string.Empty;
-        string padr = string.Empty;
-        bool enter = false;
-        bool down = false;
-        object ax = Accent.All;
-        int coldiff = 30;
+        string _text;
+        int _scale = 10;
+        int _minscale = 10;
+        string _padl = string.Empty;
+        string _padr = string.Empty;
+        bool _enter;
+        bool _down;
+        object _ax = Accent.All;
+        const int Coldiff = 30;
 
         #region Proprieties
 
@@ -24,13 +24,13 @@ namespace MinimalUI
         {
             get
             {
-                return text;
+                return _text;
             }
             set
             {
-                text = value;
-                if (scale < text.Length)
-                    scale = text.Length;
+                _text = value;
+                if (_scale < _text.Length)
+                    _scale = _text.Length;
                 Application.DoEvents();
                 Refresh();
             }
@@ -41,17 +41,17 @@ namespace MinimalUI
         {
             get
             {
-                return scale;
+                return _scale;
             }
             set
             {
-                scale = value < minscale ? minscale : value;
+                _scale = value < _minscale ? _minscale : value;
                 Application.DoEvents();
                 Refresh();
             }
         }
 
-        Font _defaultFont = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        readonly Font _defaultFont = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         [Category(" Button")]
         public override Font Font
         {
@@ -79,11 +79,11 @@ namespace MinimalUI
         {
             get
             {
-                return (Accent)ax;
+                return (Accent)_ax;
             }
             set
             {
-                ax = value;
+                _ax = value;
             }
         }
 
@@ -116,16 +116,16 @@ namespace MinimalUI
         public MonospaceButton()
         {
             InitializeComponent();
-            text = Name;
+            _text = Name;
             Font = new Font("Lucida Console", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             Graphics gs = pe.Graphics;
-            padl = string.Empty;
-            padr = padl;
-            int pad = scale - text.Length;
+            _padl = string.Empty;
+            _padr = _padl;
+            int pad = _scale - _text.Length;
             bool even = true;
 
             if (pad > 0)
@@ -133,21 +133,21 @@ namespace MinimalUI
                 if (pad % 2 != 0) even = false;
                 for (int i = 0; i < pad / 2; i++)
                 {
-                    padl += " ";
+                    _padl += " ";
                 }
-                padr = padl;
-                if (!even) padr += " ";
+                _padr = _padl;
+                if (!even) _padr += " ";
             }
 
-            String display = "[" + padl + text + padr + "]";
-            minscale = text.Length;
-            if (minscale > scale) ButtonScale = minscale;
+            String display = "[" + _padl + _text + _padr + "]";
+            _minscale = _text.Length;
+            if (_minscale > _scale) ButtonScale = _minscale;
 
-            if (enter) display = display.ToUpper();
+            if (_enter) display = display.ToUpper();
 
             var br = new SolidBrush(ForeColor);
 
-            if (down)
+            if (_down)
             {
                 display = display.ToUpper();
                 int r = br.Color.R;
@@ -157,24 +157,24 @@ namespace MinimalUI
                 switch (PressedAccentColour)
                 {
                     case Accent.All:
-                        r = (r >= (255 + coldiff) ? r = 255 : r += coldiff);
-                        g = (g >= (255 + coldiff) ? g = 255 : g += coldiff);
-                        b = (b >= (255 + coldiff) ? b = 255 : b += coldiff);
+                        if (r >= (255 + Coldiff)) r = 255; else r += Coldiff;
+                        if (g >= (255 + Coldiff)) g = 255; else g += Coldiff;
+                        if (b >= (255 + Coldiff)) b = 255; else b += Coldiff;
                         break;
                     case Accent.Red:
-                        r = (r >= (255 + coldiff) ? r = 255 : r += coldiff);
+                        if (r >= (255 + Coldiff)) r = 255; else r += Coldiff;
                         break;
                     case Accent.Green:
-                        g = (g >= (255 + coldiff) ? g = 255 : g += coldiff);
+                        if (g >= (255 + Coldiff)) g = 255; else g += Coldiff;
                         break;
                     case Accent.Blue:
-                        b = (b >= (255 + coldiff) ? b = 255 : b += coldiff);
+                        if (b >= (255 + Coldiff)) b = 255; else b += Coldiff;
                         break;
                 }
 
                 br.Color = Color.FromArgb(r, g, b);
             }
-            Point pt = new Point(0, 0);
+            var pt = new Point(0, 0);
             Size = gs.MeasureString(display, Font).ToSize();
             gs.DrawString(display, Font, br, pt);
             base.OnPaint(pe);
@@ -182,26 +182,26 @@ namespace MinimalUI
 
         private void MonospaceButton_MouseEnter(object sender, EventArgs e)
         {
-            enter = true;
-            this.Refresh();
+            _enter = true;
+            Refresh();
         }
 
         private void MonospaceButton_MouseLeave(object sender, EventArgs e)
         {
-            enter = false;
-            this.Refresh();
+            _enter = false;
+            Refresh();
         }
 
         private void MonospaceButton_MouseDown(object sender, MouseEventArgs e)
         {
-            down = true;
-            this.Refresh();
+            _down = true;
+            Refresh();
         }
 
         private void MonospaceButton_MouseUp(object sender, MouseEventArgs e)
         {
-            down = false;
-            this.Refresh();
+            _down = false;
+            Refresh();
         }
         public enum Accent
         {

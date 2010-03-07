@@ -41,7 +41,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 1;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.NumericUpDown1ValueChanged);
             // 
             // vScrollBar1
             // 
@@ -60,7 +60,7 @@
             this.monospaceButton1.Size = new System.Drawing.Size(142, 13);
             this.monospaceButton1.TabIndex = 4;
             this.monospaceButton1.Text = "Exit";
-            this.monospaceButton1.Click += new System.EventHandler(this.monospaceButton1_Click);
+            this.monospaceButton1.Click += new System.EventHandler(this.MonospaceButton1Click);
             // 
             // monospaceProgressBar1
             // 
